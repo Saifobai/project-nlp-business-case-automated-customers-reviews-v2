@@ -1,166 +1,201 @@
-![logo_ironhack_blue](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
+# 🎬 AutoReview Project
 
-# Project NLP | Business Case: Automated Customer Reviews
+An AI-powered pipeline for analyzing movie reviews — combining sentiment classification, clustering, and summarization.
+Built with Transformers, MLflow, Flask/React, and MLOps best practices.
 
-## Project Goal
+### download these files and put them in their folders and run the app
 
-This project aims to develop a product review system powered by NLP models that aggregate customer feedback from different sources. The key tasks include classifying reviews, clustering product categories, and using generative AI to summarize reviews into recommendation articles.
+#### cluster https://drive.google.com/file/d/16DGximUPdSkjbhhY5DVIwPKHG-Ouxl6f/view?usp=drive_link
 
-## Problem Statement
+-
 
-With thousands of reviews available across multiple platforms, manually analyzing them is inefficient. This project seeks to automate the process using NLP models to extract insights and provide users with valuable product recommendations.
+### sentiment
 
-## Main Tasks
+- download the folder and replace it with the same folder name
 
-### 1. Review Classification
-   - **Objective**: Classify customer reviews into **positive**, **negative**, or **neutral** categories to help the company improve its products and services.
-   - **Task**: Create a model for classifying the **textual content** of reviews into these three categories.
+#### Sentiment https://drive.google.com/drive/folders/1jZh0xKM8mTqYR30JmhjW1BJWImiRTlrS?usp=drive_link
 
-####  Mapping Star Ratings to Sentiment Classes  
-Since the dataset contains **star ratings (1 to 5)**, you should map them to three sentiment classes as follows:  
+### IMDB_Data 50k
 
-| **Star Rating** | **Sentiment Class** |
-|---------------|------------------|
-|  1 - 2     | **Negative**  |
-|  3         | **Neutral**  |
-|  4 - 5     | **Positive**  |
+#### https://drive.google.com/drive/folders/1XF9oDOU-lBAJgBBUixKT1gb0OcEW3ULr?usp=drive_link
 
- This is a simple approach, but you are encouraged to experiment with different mappings! 
+## 🚀 Features
 
+- Sentiment Analysis
+- Fine-tuned DistilBERT (with LoRA adapters) → outputs NEGATIVE / POSITIVE / NEUTRAL.
 
-**Model Building**
+- Movie Clustering
+- SentenceTransformers embeddings + KMeans for grouping by genre, director, actor.
 
-For classifying customer reviews into **positive, negative, or neutral**, use **pretrained transformer-based models** to leverage powerful language representations without training from scratch.  
+- Review Summarization
+- Concise human-readable summaries powered by Flan-T5.
 
-#### Suggested Models  
-- **`distilbert-base-uncased`** – Lightweight and fast, ideal for limited resources.  
-- **`bert-base-uncased`** – A strong general-purpose model for sentiment analysis.  
-- **`roberta-base`** – More robust to nuanced sentiment variations.  
-- **`nlptown/bert-base-multilingual-uncased-sentiment`** – Handles multiple languages, useful for diverse datasets.  
-- **`cardiffnlp/twitter-roberta-base-sentiment`** – Optimized for short texts like social media reviews.  
+- Visualization Tools
 
-Explore models on [Hugging Face](https://huggingface.co/models) and experiment with fine-tuning to improve accuracy.
+- Loss curves (training vs. evaluation)
 
-### Model Evaluation
+- Accuracy & F1 score trends
 
-#### Evaluation Metrics
+- Confusion matrices (raw + normalized)
 
-- Evaluated the model's performance on a separate test dataset using various evaluation metrics:
-  - Accuracy: Percentage of correctly classified instances.
-  - Precision: Proportion of true positive predictions among all positive predictions.
-  - Recall: Proportion of true positive predictions among all actual positive instances.
-  - F1-score: Harmonic mean of precision and recall.
-- Calculated confusion matrix to analyze model's performance across different classes.
+- Cluster distribution histograms
 
-####  Results
+- MLOps with MLflow
 
-- Model achieved an accuracy of X% on the test dataset.
- - Precision, recall, and F1-score for each class are as follows:
- - Class 1: Precision=X%, Recall=X%, F1-score=X%
- - Class 2: Precision=X%, Recall=X%, F1-score=X%
- - ...
-- Confusion matrix showing table and graphical representations
+- Automatic experiment tracking
 
+- Metrics, parameters, and artifact logging
 
-### 2. Product Category Clustering
-   - **Objective**: Simplify the dataset by clustering product categories into **4-6 meta-categories**.
-   - **Task**: Create a model to group all reviews into 4-6 broader categories. Example suggestions:
-     - Ebook readers
-     - Batteries
-     - Accessories (keyboards, laptop stands, etc.)
-     - Non-electronics (Nespresso pods, pet carriers, etc.)
-   - **Note**: Analyze the dataset in depth to determine the most appropriate categories.
+- Model registry
 
-### 3. Review Summarization Using Generative AI
-   - **Objective**: Summarize reviews into articles that recommend the top products for each category.
-   - **Task**: Create a model that generates a short article (like a blog post) for each product category. The output should include:
-     - **Top 3 products** and key differences between them.
-     - **Top complaints** for each of those products.
-     - **Worst product** in the category and why it should be avoided.
+🛠️ Installation
 
-     Consider using **Pretrained Generative Models** like **T5**, **GPT-3**, or **BART** for generating coherent and well-structured summaries. These models excel at tasks like summarization and text generation, and can be fine-tuned to produce high-quality outputs based on the extracted insights from reviews. 
-     You are encouraged to explore other **Transformer-based models** available on platforms like **Hugging Face**. Fine-tuning any of these pre-trained models on your specific dataset could further improve the relevance and quality of the generated summaries.
+# Clone repository
 
-## Datasets
+git clone https://github.com/your-username/AutoReview.git
+cd AutoReview
 
-- **Primary Dataset**: [Amazon Product Reviews](https://www.kaggle.com/datasets/datafiniti/consumer-reviews-of-amazon-products/data)
-- **Larger Dataset**: [Amazon Reviews Dataset](https://cseweb.ucsd.edu/~jmcauley/datasets.html#amazon_reviews)
-- **Additional Datasets**: You are free to use other datasets from sources like HuggingFace, Kaggle, or any other platform.
+# Create virtual environment
 
-<!-- ## Deployment -->
+python -m venv venv
 
-<!-- - **Hosting**: You are free to host the models on your laptop or any cloud platform.
-- **Framework**: You can use any framework of your choice (e.g., Gradio, AWS, etc.).
+# Linux / Mac
 
-- **Options**:
-  - List the models on HuggingFace.
-  - Deploy a text file with the final results.
-  - Create a website that displays the final results.
-  - Build a live review aggregator.
-  - Develop a website that generates recommendations by uploading a file with reviews.
+source venv/bin/activate
 
-- **Inspiration**: Look at websites like Consumer Reviews, The Verge, or The Wirecutter for ideas. -->
+# Windows
 
+venv\Scripts\activate
 
-## Deployment Guidelines
+# Install dependencies
 
-### Expectations
+pip install -r requirements.txt
 
-- You are expected to showcase a webpage or web app in which some simple user interactions are possible (for example through buttons, text boxes, sliders, ...).
-- All your three components (classification, clustering, and text summarizer) should be visible or possible to interact with on the page in some form.
-- You are free to host the models on your laptop or any cloud platform (e.g., Gradio, AWS, etc.).
+## 📂 Project Structure
 
-We provide you with some ideas below. However, you are not limited to these options. Feel free to build a web app or website that does different things to what listed below.
+```
+AutoReview/
+│── notebooks/
+│   └── AutoReviewModel.ipynb   # Training & experimentation
+│── backend/
+│   └── app.py                  # Flask/FastAPI backend
+│── frontend/
+│   └── ...                     # React / Streamlit frontend
+│── sentiment_model/            # Saved sentiment model
+│── clustering.pkl               # Saved clustering artifacts
+│── imdb_data.csv                # IMDb dataset
+│── README.md
+│── requirements.txt
 
-1. **Create a website for the marketing department in your company**, who needs to gain insights on how well the products are received by customers (from reviews) and what other competitive products exist in the market.  For example, users in your webpage can choose between product categories and be shown statistics insights (distribution of ratings, best product ratings, etc), and text summarization for that specific category (which are the best product in this category, etc).
-2. **Build a live review aggregator**: this could be a website like, for example, https://www.trustpilot.com/ or https://www.yelp.com/, organizing reviews strategically for buyers. You could add functionality for users to add reviews (for example, through a form, a user could write about a product, selecting which cluster category it belongs to and the rating given). Once a review is submitted, it could be displayed on the page as a ‘recently added review’. Feel free to come up with your own ideas about how you would like your live review aggregator to look like and behave
-3. **Develop a website that generates recommendations by allowing users to upload a csv file with reviews**. For example, this website could allow business owners to upload a dataset of their products and respective reviews. Your website would process these, classifying them, clustering them, and showing insights in the form of small articles listing top products, main product issues, etc., for example (e.g., a list of articles, one per product; a list of articles, one per cluster).
-4. **Develop a website that allows users to search for information about a product or product category through a text box**. This could be a text box where users type in what they are looking for / would like to buy. The output could display recommendations of products in text summary format, the category of the product, and the sentiment distribution for that product.
+```
 
-## Deliverables
+## 🧠 Model Training
 
-1. **Source Code**:
-   - Well-organized and linted code (use tools like `pylint`).
-   - Notebooks should be structured with clear headers/sections.
-   - Alternatively, provide plain Python files with a `main()` function.
-2. **README**:
-   - A detailed README file explaining how to run the code and reproduce the results.
-3. **Final Output**:
-   - Generated blog posts with product recommendations.
-   - A website, text file, or Word document containing the final results.
-4. **PPT Presentation**:
-   - A presentation (no more than 15 minutes) tailored for both technical and non-technical audiences.
-5. **Deployed Model**:
-   - A deployed web app using the framework of your choice.
-   - Bonus: Host the app so it can be queried by anyone.
+- Sentiment Model
 
-## Evaluation Criteria
+- Dataset: IMDb (50k reviews) + synthetic neutral class
 
-| **Task**                              | **Points** |
-|---------------------------------------|------------|
-| Data Preprocessing                    | 15         |
-| Model for Review Classification       | 20         |
-| Clustering Model                      | 20         |
-| Summarization Model                   | 20         |
-| Deployment of the Model               | 10         |
-| PDF Report (Approach, Results, Analysis) | 5          |
-| PPT Presentation                      | 10         |
-| **Bonus**: Hosting the App Publicly   | 10         |
+- Base model: distilbert-base-uncased (LoRA fine-tuned)
 
-**Passing Score**: 70 points.
+- Optimizer: AdamW
 
-## Additional Notes
+- Epochs: 5
 
-- **Teamwork**: Work in groups of no more than 3 people. If necessary, one group may have 4 members.
-- **Presentation**: Tailor your presentation for both technical and non-technical audiences. Refer to the "Create Presentation" guidelines in the Student Portal.
+- Clustering
 
-## Suggested Workflow
+- Embeddings: all-MiniLM-L6-v2 (SentenceTransformers)
 
-1. **Data Collection**: Gather and preprocess the dataset(s).
-2. **Model Development**:
-   - Build and evaluate the review classification model.
-   - Develop and test the clustering model.
-   - Create the summarization model using Generative AI.
-3. **Deployment**: Deploy the models using your chosen framework.
-4. **Documentation**: Prepare the README, PDF report, and PPT presentation.
-5. **Final Delivery**: Submit all deliverables, including the deployed app and final output.
+- Algorithm: KMeans (n=5)
+
+- Summarization
+
+- Model: google/flan-t5-small
+
+- Produces 3–5 sentence summaries of review sets
+
+- 📊 Visualizations
+
+- 📉 Loss Curves – Training vs. Evaluation
+
+- ✅ Accuracy & F1 Trends
+
+- 🔲 Confusion Matrices – Counts & Percentages
+
+- 🎭 Cluster Distribution Histograms
+
+- 🏗️ System Architecture
+  graph TD
+  A[User] -->|Submits review / query| B[React Frontend]
+  B --> C[Flask/FastAPI Backend]
+  C --> D[Sentiment Model (DistilBERT+LoRA)]
+  C --> E[Clustering (SentenceTransformers + KMeans)]
+  C --> F[Summarization (Flan-T5 / GPT)]
+  C --> G[MLflow Tracking]
+  D --> H[Results: Sentiment]
+  E --> H
+  F --> H
+  H --> B
+
+🔄 Workflow Pipeline
+flowchart LR
+A[Raw Movie Reviews] --> B[Preprocessing]
+B --> C[Sentiment Analysis]
+B --> D[Clustering Embeddings]
+B --> E[Summarization]
+C --> F[Visualizations & Metrics]
+D --> F
+E --> F
+F --> G[Dashboard (React + Flask API)]
+
+📦 Saving & Reloading
+
+# Save trained models
+
+trainer.model.save_pretrained("./sentiment_model")
+tokenizer.save_pretrained("./sentiment_model")
+joblib.dump((embedder, kmeans), "clustering.pkl")
+
+# Reload for inference
+
+sentiment_model = AutoModelForSequenceClassification.from_pretrained(
+"./sentiment_model", num_labels=3
+)
+embedder, kmeans = joblib.load("clustering.pkl")
+
+⚡ MLOps with MLflow
+
+Track experiments, parameters, and metrics:
+
+mlflow ui
+
+➡️ Open in browser: http://127.0.0.1:5000
+
+🔍 Example Usage
+
+# Sentiment
+
+sentiment_pipe("Loved the movie, amazing acting!")
+
+# → POSITIVE
+
+# Clustering
+
+"Dune Part Two (2025)" → Cluster 2
+
+# Summarization
+
+["Great visuals!", "Story was slow.", "Loved the music."]
+
+# → "Amazing visuals and soundtrack, but pacing was slow. Overall great experience."
+
+🔮 Future Improvements
+
+🎯 Deploy with FastAPI / Streamlit
+
+🔍 Add movie search & recent reviews feature
+
+📡 Connect to live review feeds (IMDb, Rotten Tomatoes, Twitter)
+
+⚙️ Full CI/CD pipeline with automated retraining & deployment
+
+✨ AutoReview combines ML, LLMs, and modern web tools into a powerful end-to-end review analysis system.

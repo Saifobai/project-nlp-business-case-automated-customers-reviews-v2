@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "movie": "Inception",
+    "text": "Mind-bending and amazing!",
+    "s": "positive"
+  },
+  {
+    "id": 2,
+    "movie": "The Room",
+    "text": "So bad it's funny",
+    "s": "neutral"
+  },
+  {
+    "id": 3,
+    "movie": "Cats",
+    "text": "Awful movie, waste of time",
+    "s": "negative"
+  },
+  {
+    "id": 4,
+    "movie": "Dune part 2",
+    "text": "Good movie",
+    "s": "positive",
+    "genre": "Sci-Fi",
+    "rating": 7
+  },
+  {
+    "id": 5,
+    "movie": "Matrix",
+    "text": "such an amazing sci-fi movie",
+    "s": "positive",
+    "genre": "Sci-Fi",
+    "rating": 8
+  },
+  {
+    "id": 6,
+    "movie": "Titanic",
+    "text": "the movie is really good but has a sad ending",
+    "s": "negative",
+    "genre": "Romance",
+    "rating": 5
+  },
+  {
+    "id": 7,
+    "movie": "The dark knight rise",
+    "text": "The Dark Knight Rises' is a divisive finale to Christopher Nolan's Batman trilogy. It is celebrated for its grand scale, thrilling action, and standout performances by Christian Bale and Tom Hardy. The film is admired for its ambitious narrative and emotional resonance",
+    "s": "positive",
+    "genre": "Sci-Fi",
+    "rating": 8
+  }
+]
